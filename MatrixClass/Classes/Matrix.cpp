@@ -10,11 +10,11 @@
 
 Matrix::Matrix(const int rows, const int columns) {
     if (rows < 1) {
-        cout << "Matrix i size is unsuitable number, resetting to 3.\n";
+        cout << "Matrix row count is invalid, resetting to 3.\n";
         i = 3;
     }
     if (columns < 1) {
-        cout << "Matrix j size is unsuitable number, resetting to 3.\n";
+        cout << "Matrix column count is invalid, resetting to 3.\n";
         j = 3;
     }
     
