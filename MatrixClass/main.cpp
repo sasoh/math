@@ -14,9 +14,14 @@ using std::cin;
 using std::endl;
 
 int main(int argc, const char * argv[]) {
-    Matrix *obj = new Matrix(4, 4);
-    obj->setElement(3, 3, 1);
-    cout << "My first matrix:" << endl << *obj;
+    Matrix obj1(4, 4);
+    Matrix obj2(4, 4);
+    obj1.setElement(3, 3, 4);
+    obj2.setElement(3, 2, 0.5);
+    cout << "M1:\n" << objs1;
+    cout << "M2:\n" << obj2;
+    cout << "M1 + M2:\n" << obj1 + obj2;
+    cout << "M1 - M2:\n" << obj1 - obj2;
     return 0;
 }
 
