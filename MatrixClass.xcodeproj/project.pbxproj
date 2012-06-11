@@ -28,6 +28,7 @@
 		2D44151C1586676B00651969 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		2D441525158667AB00651969 /* Matrix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Matrix.h; path = Classes/Matrix.h; sourceTree = "<group>"; };
 		2D441527158667C100651969 /* Matrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Matrix.cpp; path = Classes/Matrix.cpp; sourceTree = "<group>"; };
+		2DCFA1D11586762600F49547 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +63,7 @@
 			children = (
 				2D441526158667AE00651969 /* Matrix Class */,
 				2D44151C1586676B00651969 /* main.cpp */,
+				2DCFA1D11586762600F49547 /* README.md */,
 			);
 			path = MatrixClass;
 			sourceTree = "<group>";

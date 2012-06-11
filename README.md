@@ -1,4 +1,4 @@
-math
+Matrix
 ====
 
-Fooling around with some concepts
+Fooling around with some basic linear algebra
