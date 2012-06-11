@@ -34,6 +34,7 @@ public:
     // common operations
     Matrix operator+(const Matrix &another) const;
     Matrix operator-(const Matrix &another) const;
+    Matrix operator*(const Matrix &another) const;
     bool transpose();
     bool isSingular();
     Matrix *getInverseMatrix(bool *error);

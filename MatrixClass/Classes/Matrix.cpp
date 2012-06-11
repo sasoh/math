@@ -118,6 +118,25 @@ Matrix Matrix::operator-(const Matrix &another) const {
     return result;
 }
 
+Matrix Matrix::operator*(const Matrix &another) const {
+    Matrix result(getRows(), another.getColumns());
+    if (getRows() == another.getColumns()) {
+        for (int k = 0; k < getRows(); k++) {
+            for (int p = 0; p < another.getColumns(); p++) {
+                double product = 0;
+                for (int m = k; m < getColumns(); m++) {
+                    product += getElement(k, m) * another.getElement(m, p);
+                }
+                result.setElement(k, p, product);
+            }
+        }
+    }
+    else {
+        cout << "You can perform multiplication on (m x n) * (n x p) matrices.\n";
+    }
+    return result;
+}
+
 bool Matrix::transpose() {
     // TODO
     return false;

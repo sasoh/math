@@ -14,14 +14,25 @@ using std::cin;
 using std::endl;
 
 int main(int argc, const char * argv[]) {
-    Matrix obj1(4, 4);
-    Matrix obj2(4, 4);
-    obj1.setElement(3, 3, 4);
-    obj2.setElement(3, 2, 0.5);
-    cout << "M1:\n" << objs1;
+    Matrix obj1(2, 3);
+    Matrix obj2(3, 2);
+    obj1.setElement(0, 0, 1);
+    obj1.setElement(0, 1, 0);
+    obj1.setElement(0, 2, -2);
+    obj1.setElement(1, 0, 0);
+    obj1.setElement(1, 1, 3);
+    obj1.setElement(1, 2, -1);
+    
+    obj2.setElement(0, 0, 0);
+    obj2.setElement(0, 1, 3);
+    obj2.setElement(1, 0, -2);
+    obj2.setElement(1, 1, -1);
+    obj2.setElement(2, 0, 0);
+    obj2.setElement(2, 1, 4);
+    
+    cout << "M1:\n" << obj1;
     cout << "M2:\n" << obj2;
-    cout << "M1 + M2:\n" << obj1 + obj2;
-    cout << "M1 - M2:\n" << obj1 - obj2;
+    cout << "M1 * M2:\n" << obj1 * obj2;
     return 0;
 }
 
