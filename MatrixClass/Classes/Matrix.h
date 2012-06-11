@@ -7,16 +7,27 @@
 //
 
 #include <iostream>
+#include <iomanip>
 
 #ifndef MatrixClass_Matrix_h
 #define MatrixClass_Matrix_h
 
+using std::cin;
+using std::cout;
+using std::endl;
+using std::setprecision;
+
 class Matrix {
 public:
-    Matrix(int i_ = 3, int j_ = 3);
+    Matrix(const int rows = 3, const int columns = 3);
     ~Matrix();
     Matrix &operator=(const Matrix &another);
     friend std::ostream& operator<< (std::ostream& stream, const Matrix &another);
+    
+    const int getRows() const;
+    const int getColumns() const;
+    const double getElement(const int row = 0, const int column = 0) const;
+    void setElement(const int row = 0, const int column = 0, const double value = 0);
     
     bool transpose();
     bool isSingular();
@@ -26,7 +37,5 @@ private:
     int i;
     int j;
 };
-
-
 
 #endif
