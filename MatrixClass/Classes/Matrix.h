@@ -20,7 +20,8 @@ using std::setw;
 class Matrix {
 public:
     // essential class functions
-    Matrix(const int rows = 3, const int columns = 3);
+    Matrix(const int rows_ = 3, const int columns_ = 3);
+    Matrix(const Matrix &another);
     ~Matrix();
     Matrix &operator=(const Matrix &another);
     friend std::ostream& operator<< (std::ostream& stream, const Matrix &another);
@@ -35,13 +36,13 @@ public:
     Matrix operator+(const Matrix &another) const;
     Matrix operator-(const Matrix &another) const;
     Matrix operator*(const Matrix &another) const;
-    bool transpose();
+    void transpose();
     bool isSingular();
     Matrix *getInverseMatrix(bool *error);
 private:
     double **data;
-    int i;
-    int j;
+    int rows;
+    int columns;
 };
 
 #endif

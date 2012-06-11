@@ -8,30 +8,46 @@
 
 #include "Matrix.h"
 
-Matrix::Matrix(const int rows, const int columns) {
-    if (rows < 1) {
+Matrix::Matrix(const int rows_, const int columns_) {
+    if (rows_ < 1) {
         cout << "Matrix row count is invalid, resetting to 3.\n";
-        i = 3;
+        rows = 3;
     }
-    if (columns < 1) {
+    else {
+        rows = rows_;
+    }
+    if (columns_ < 1) {
         cout << "Matrix column count is invalid, resetting to 3.\n";
-        j = 3;
+        columns = 3;
     }
-    
-    i = rows;
-    j = columns;
-    
-    data = new double *[i];
-    for (int k = 0; k < i; k++) {
-        data[k] = new double[j];
-        for (int p = 0; p < j; p++) {
+    else {
+        columns = columns_;
+    }
+
+    data = new double *[rows];
+    for (int k = 0; k < rows; k++) {
+        data[k] = new double[columns];
+        for (int p = 0; p < columns; p++) {
             data[k][p] = 0;
         }
     }
 }
 
+Matrix::Matrix(const Matrix &another) {
+    rows = another.getRows();
+    columns = another.getColumns();
+
+    data = new double *[rows];
+    for (int k = 0; k < rows; k++) {
+        data[k] = new double[columns];
+        for (int p = 0; p < columns; p++) {
+            data[k][p] = another.getElement(k, p);
+        }
+    }
+}
+
 Matrix::~Matrix() {
-    for (int k = 0; k < i; k++) {
+    for (int k = 0; k < rows; k++) {
         delete []data[k];
     }
     delete []data;
@@ -39,10 +55,10 @@ Matrix::~Matrix() {
 
 Matrix &Matrix::operator=(const Matrix &another) {
     if (this != &another) {
-        i = another.getRows();
-        j = another.getColumns();
-        for (int k = 0; k < i; k++) {
-            for (int p = 0; p < j; p++) {
+        rows = another.getRows();
+        columns = another.getColumns();
+        for (int k = 0; k < rows; k++) {
+            for (int p = 0; p < columns; p++) {
                 data[k][p] = another.getElement(k, p);
             }
         }
@@ -62,15 +78,15 @@ std::ostream& operator<< (std::ostream& stream, const Matrix &another) {
 }
 
 const int Matrix::getRows() const {
-    return i;
+    return rows;
 }
 
 const int Matrix::getColumns() const {
-    return j;
+    return columns;
 }
 
 const double Matrix::getElement(const int row, const int column) const {
-    if ((row >= 0 && row < i) && (column >= 0 && column < j)) {
+    if ((row >= 0 && row < rows) && (column >= 0 && column < columns)) {
         return data[row][column];
     }
     else {
@@ -80,7 +96,7 @@ const double Matrix::getElement(const int row, const int column) const {
 }
 
 void Matrix::setElement(const int row, const int column, const double value) {
-    if ((row >= 0 && row < i) && (column >= 0 && column < j)) {
+    if ((row >= 0 && row < rows) && (column >= 0 && column < columns)) {
         data[row][column] = value;
     }
     else {
@@ -89,10 +105,10 @@ void Matrix::setElement(const int row, const int column, const double value) {
 }
 
 Matrix Matrix::operator+(const Matrix &another) const {
-    Matrix result(i, j);
-    if (another.getRows() == i && another.getColumns() == j) {
-        for (int k = 0; k < i; k++) {
-            for (int p = 0; p < j; p++) {
+    Matrix result(rows, columns);
+    if (another.getRows() == rows && another.getColumns() == columns) {
+        for (int k = 0; k < rows; k++) {
+            for (int p = 0; p < columns; p++) {
                 result.setElement(k, p, getElement(k, p) + another.getElement(k, p));
             }
         }
@@ -104,10 +120,10 @@ Matrix Matrix::operator+(const Matrix &another) const {
 }
 
 Matrix Matrix::operator-(const Matrix &another) const {
-    Matrix result(i, j);
-    if (another.getRows() == i && another.getColumns() == j) {
-        for (int k = 0; k < i; k++) {
-            for (int p = 0; p < j; p++) {
+    Matrix result(rows, columns);
+    if (another.getRows() == rows && another.getColumns() == columns) {
+        for (int k = 0; k < rows; k++) {
+            for (int p = 0; p < columns; p++) {
                 result.setElement(k, p, getElement(k, p) - another.getElement(k, p));
             }
         }
@@ -137,9 +153,25 @@ Matrix Matrix::operator*(const Matrix &another) const {
     return result;
 }
 
-bool Matrix::transpose() {
-    // TODO
-    return false;
+void Matrix::transpose() {
+    Matrix copyObj(*this);
+    
+    // clear old matrix
+    for (int k = 0; k < rows; k++) {
+        delete []data[k];
+    }
+    delete []data;
+    
+    // create new
+    rows = copyObj.getColumns();
+    columns = copyObj.getRows();
+    data = new double *[rows];
+    for (int k = 0; k < rows; k++) {
+        data[k] = new double[columns];
+        for (int p = 0; p < columns; p++) {
+            data[k][p] = copyObj.getElement(p, k);
+        }
+    }
 }
 
 bool Matrix::isSingular() {

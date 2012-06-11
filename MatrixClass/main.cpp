@@ -33,6 +33,8 @@ int main(int argc, const char * argv[]) {
     cout << "M1:\n" << obj1;
     cout << "M2:\n" << obj2;
     cout << "M1 * M2:\n" << obj1 * obj2;
+    obj1.transpose();
+    cout << "M1T:\n" << obj1;
     return 0;
 }
 
